@@ -15,11 +15,14 @@ const btnLetters = () => {
         button.textContent = l;
         button.addEventListener('click', () => {
             letter = l;
+            document.querySelector(".btn-active").classList.remove("btn-active");
+            button.classList.add('btn-active');
             divHeroesInfo.style.display = "none";
             getHeros();
         });
         divLetters.appendChild(button);
     });
+    document.querySelector(".btn").classList.add("btn-active");
 }
 
 const getHeros = async () => {
@@ -43,7 +46,7 @@ const getHeros = async () => {
                 heroName.style.backgroundColor = '#ED1D24';
             });
             heroElement.addEventListener('click', () => {
-                getHero(hero.id)
+                getHero(hero)
             });
             heroElement.appendChild(heroName);
             divHeroesList.appendChild(heroElement);
@@ -53,11 +56,8 @@ const getHeros = async () => {
     }
 }
 
-const getHero = async (id) => {
+const getHero = async (hero) => {
     try {
-        const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${API_KEY}&hash=${API_HASH}`);
-        let json = await response.json();
-        let hero = json.data.results[0];
         divHeroesInfo.innerHTML = "";
         divHeroesInfo.style.display = 'grid';
 

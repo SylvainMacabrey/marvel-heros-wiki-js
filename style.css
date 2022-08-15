@@ -40,6 +40,11 @@ body {
     border: solid 1px #ED1D24;
 }
 
+.btn-active {
+    background-color: black;
+    border: solid 1px black;
+}
+
 .heroes-info {
     display: none;
     background-color: white;
